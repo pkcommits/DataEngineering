@@ -1,42 +1,33 @@
-# AWS Data Engg Project
+# Ecommerce Analytics Platform on AWS using Terraform
 
 Design like Enterprise Architect
 Execute like a Student on Free Tier
 
 ## Project Overview
-This project demonstrates a real-time Data Engineering pipeline built using AWS Cloud services, Terraform for Infrastructure as Code (IaC), and Databricks for data processing.
 
-We are extracting E-commerce data from DummyJSON API and storing it in an S3 Data Lake. The pipeline processes and transforms the data using AWS Lambda and Databricks Spark and is orchestrated using Apache Airflow.
+This project showcases a cost-effective, production-style data lake architecture using only AWS Free Tier eligible services. The use case focuses on ingesting and processing product data from public APIs and enabling analytics using serverless querying.
 
-## Architecture Diagram
+Lambda (triggered manually or scheduled) fetches product data from DummyJSON API.
 
-DummyJSON API (E-Commerce Data)
-  ↓
-AWS Lambda (Fetch & Store Raw Data)
-   ↓
-S3 Bucket (Raw Zone)
-  ↓
-Glue Data Catalog (Metadata)
-  ↓
-Airflow (Orchestration - Running on EC2)
-   ↓
-Databricks Community Edition (Spark Transformation)
-   ↓
-S3 Bucket (Processed Zone)
+Data is stored in S3 (raw zone).
 
-## AWS Services Used
+Glue Crawlers scan and catalog this data into the AWS Glue Data Catalog.
 
-![alt text](image.png)
+Databricks Community Edition reads raw data from S3, processes and writes cleaned output back to the processed/curated zones.
 
-aws-data-engg-project/
-│
-├── terraform/        --> AWS Infra Automation Code
-├── lambda/           --> Python Lambda Function to Fetch API Data
-├── airflow/          --> Apache Airflow DAGs
-├── databricks/       --> Spark Notebooks for Data Transformation
-├── data/             --> Input & Output Files
-├── README.md         --> This File
-└── architecture-diagram.png  --> Architecture Diagram
+Lake Formation manages access permissions for Athena, Glue, and users.
+
+Athena queries data in S3 (via Glue Catalog) for ad-hoc or dashboard analysis.
+
+Apache Airflow (on EC2) orchestrates the entire flow via DAGs.
+
+## Architecture Components
+
+![alt text](image-1.png)
+
+
+
+
 
 # How to Run This Project
 
