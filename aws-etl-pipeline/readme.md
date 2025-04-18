@@ -7,34 +7,24 @@ Execute like a Student on Free Tier
 
 This project showcases a cost-effective, production-style data lake architecture using only AWS Free Tier eligible services. The use case focuses on ingesting and processing product data from public APIs and enabling analytics using serverless querying.
 
-Lambda (triggered manually or scheduled) fetches product data from DummyJSON API.
+-> Lambda (triggered manually or scheduled) fetches product data from DummyJSON API.
 
-Data is stored in S3 (raw zone).
+-> Data is stored in S3 (raw zone).
 
-Glue Crawlers scan and catalog this data into the AWS Glue Data Catalog.
+-> Glue Crawlers scan and catalog this data into the AWS Glue Data Catalog.
 
-Databricks Community Edition reads raw data from S3, processes and writes cleaned output back to the processed/curated zones.
+-> Databricks Community Edition reads raw data from S3, processes and writes cleaned output back to the  processed/curated zones.
 
-Lake Formation manages access permissions for Athena, Glue, and users.
+-> Lake Formation manages access permissions for Athena, Glue, and users.
 
-Athena queries data in S3 (via Glue Catalog) for ad-hoc or dashboard analysis.
+-> Athena queries data in S3 (via Glue Catalog) for ad-hoc or dashboard analysis.
 
-Apache Airflow (on EC2) orchestrates the entire flow via DAGs.
+-> Apache Airflow (on EC2) orchestrates the entire flow via DAGs.(qube flow, Informatica)
 
 ## Architecture Components
 
 ![alt text](image-1.png)
 
-
-
-
-
-# How to Run This Project
-
-### 1. Clone Repo
-
-git clone https://github.com/yourusername/aws-data-engg-project.git
-cd aws-data-engg-project
 
 ### 2. Setup Terraform
 
